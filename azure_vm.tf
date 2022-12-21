@@ -13,10 +13,12 @@ variable "tenantId" {}
 variable "clientId" {}
 variable "clientSecret" {}
 variable "instance_parameters" {
-  type = map
+  type = map(object({
+    name    = string
+  }))
   default = {
-    "name" = "master"
-  }
+      name    = "master"
+    }
 }
 
 provider "azurerm" {
