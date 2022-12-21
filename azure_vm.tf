@@ -13,11 +13,11 @@ variable "tenantId" {}
 variable "clientId" {}
 variable "clientSecret" {}
 variable "instance_parameters" {
-  type = object({
+  type = map
   default = {
     "name" = "master"
   }
-})
+}
 
 provider "azurerm" {
   #version = "3.22.0"
