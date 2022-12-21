@@ -12,8 +12,11 @@ variable "subscriptionId" {}
 variable "tenantId" {}
 variable "clientId" {}
 variable "clientSecret" {}
-variable "vmName" {
-  default = ""
+variable "instance_parameters" {
+  type = map
+  default = {
+    "name" = "master"
+  }
 }
 
 provider "azurerm" {
@@ -113,7 +116,7 @@ output "tls_private_key" { value = "${tls_private_key.dg-key-1.private_key_pem}"
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "dg-vm-1" {
-    name = var.vmName
+    name = var.instance_parameters["name"]
     location = "centralus"
     resource_group_name = azurerm_resource_group.dg-rg-1.name
     network_interface_ids = [azurerm_network_interface.dg-nic-1.id]
@@ -138,5 +141,6 @@ resource "azurerm_linux_virtual_machine" "dg-vm-1" {
     }
     tags = {
         environment = "DG Terraform"
+        applicationRole = "${var.instance_parameters["name"]}-app"
     }
 }
