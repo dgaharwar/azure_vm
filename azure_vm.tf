@@ -114,7 +114,7 @@ resource "tls_private_key" "dg-key-1" {
   algorithm = "RSA"
   rsa_bits = 4096
 }
-output "tls_private_key" { value = "${tls_private_key.dg-key-1.private_key_pem}" }
+output "tls_private_key" { value = "{tls_private_key.dg-key-1.private_key_pem}" }
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "dg-vm-1" {
