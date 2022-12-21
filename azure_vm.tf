@@ -13,12 +13,14 @@ variable "tenantId" {}
 variable "clientId" {}
 variable "clientSecret" {}
 variable "instance_parameters" {
-  type = (object({
+  type = list(object({
     name = string
   }))
-  default = {
+  default = [
+      {
     name = "master"
   }
+ ]
 }
 
 provider "azurerm" {
