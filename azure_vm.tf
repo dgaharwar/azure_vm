@@ -13,9 +13,11 @@ variable "tenantId" {}
 variable "clientId" {}
 variable "clientSecret" {}
 variable "instance_parameters" {
-  type = map
+  type = object({
+    name = string
+  })
   default = {
-    "name" = "master"
+    name = "master"
   }
 }
 
