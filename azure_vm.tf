@@ -14,12 +14,10 @@ variable "clientId" {}
 variable "clientSecret" {}
 variable "instance_parameters" {
   type = object({
-    name = string
-  })
   default = {
     "name" = "master"
   }
-}
+})
 
 provider "azurerm" {
   #version = "3.22.0"
